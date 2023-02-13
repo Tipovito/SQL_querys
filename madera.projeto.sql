@@ -49,7 +49,7 @@ forn_rpstnt		varchar(40)		not null,
 )
 go
 
-create table madera.cliente
+create table madera.clientes
 (
 clie_CD			int				primary key			identity(1,1),
 clie_NM			varchar(40)		not null,
@@ -63,11 +63,17 @@ clie_fone_ref	varchar(20)		not null,
 )
 go
 
+
 ------------------Tabelas-Controles--------------------------------------------------
 
 create table madera.control_caixa
 (
-caix_CD
-func_CD
+caix_CD			int				primary key			identity(1,1),
+func_CD			int				foreign key			references madera.funcionarios,
+clie_CD			int				foreign key			references madera.clientes,
+prod_CD			int				foreign key			references madera.produtos,
+caix_QT			int				not null,
+caix_VL_total	money			not null,
+caix_form_pgmnt varchar(20)		not null,
 )
 go
